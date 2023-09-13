@@ -13,6 +13,12 @@
     align-items: center;
     justify-content: center;
 
+    @media only screen and (max-width: $bp-smallest) {
+        order: 1;
+        flex: 0 0 100%;
+        background-color: var(--color-grey-light-2);
+    }
+
     &__input {
         font-family: inherit;
         font-size: inherit;
@@ -129,15 +135,30 @@
     list-style: none;
     margin-top: 3.5rem;
 
+    @media only screen and (max-width: $bp-medium) {
+        margin: 0;
+        display: flex;
+    }
+
     &__item {
         position: relative;
 
         &:not(:last-child) {
             margin-bottom: .5rem;
+
+            @media only screen and (max-width: $bp-medium) {
+                margin: 0;
+            }
+
+
         }
 
+        @media only screen and (max-width: $bp-medium) {
+            flex: 1;
+        }
     }
-    &__item::before{
+
+    &__item::before {
         content: "";
         position: absolute;
         top: 0;
@@ -146,18 +167,19 @@
         width: 3px;
         background-color: var(--color-primary);
         transform: scaleY(0);
-        transition: transform 0.2s, 
-                    width 0.4s cubic-bezier(1,0,0,1) .2s,
-                    background-color 0.1s;
+        transition: transform 0.2s,
+            width 0.4s cubic-bezier(1, 0, 0, 1) .2s,
+            background-color 0.1s;
 
     }
-    &__item:hover::before, 
-    &__item--active::before{
+
+    &__item:hover::before,
+    &__item--active::before {
         transform: scaleY(1);
         width: 100%;
     }
 
-    &__item:active::before{
+    &__item:active::before {
         background-color: var(--color-primary-light);
     }
 
@@ -173,13 +195,22 @@
         position: relative;
         z-index: 10;
 
-
         // for aligning the elements vertically
         display: flex;
         align-items: center;
 
+        @media only screen and (max-width: $bp-large) {
+            justify-content: center;
+            padding: 2rem;
+        }
 
-       
+        @media only screen and (max-width: $bp-small) {
+            flex-direction: column;
+            padding: 1.5rem;
+        }
+
+
+
     }
 
     &__icon {
@@ -187,6 +218,13 @@
         width: 1.75rem;
         margin-right: 2rem;
         fill: currentColor;
+
+        @media only screen and (max-width: $bp-small) {
+            margin-right: 0;
+            margin-bottom: .7rem;
+            height: 1.5rem;
+            width: 1.5rem;
+        }
     }
 
 }
@@ -199,15 +237,19 @@
     color: var(--color-grey-light-4);
     text-align: center;
     padding: 2.5rem;
+
+    @media only screen and (max-width: $bp-medium) {
+        display: none;
+    }
 }
 
 ////////////////////////////////////////
 // GALLERY 
 
-.gallery{
+.gallery {
     display: flex;
 
-    &__photo{
+    &__photo {
         width: 100%;
         display: block;
     }
@@ -216,70 +258,99 @@
 ////////////////////////////////////////
 // HOTEL OVERVIEW 
 
-.overview{
+.overview {
     display: flex;
     align-items: center;
     border-bottom: var(--line);
 
-
-    &__heading{
+    &__heading {
         font-size: 2.25rem;
         font-weight: 300;
         text-transform: uppercase;
         letter-spacing: 1px;
         padding: 1.5rem 3rem;
 
-
+        @media only screen and (max-width: $bp-small) {
+            font-size: 1.8rem;
+            padding: 1.25rem 2rem;
+            margin-right: auto;
+        }
+        @media only screen and (max-width: $bp-smallest) {
+            padding-right: 0;
+            letter-spacing: 0;
+        }
     }
 
-    &__stars{
+    &__stars {
         // margin-right:auto will automatically calculate the max empty space as margin and will only occupy 
         // the required space unlike flex:1 which occupy all the free space
         margin-right: auto;
         display: flex;
+
+       
     }
-    
+
     &__icon-star,
-    &__icon-location{
+    &__icon-location {
         height: 1.7rem;
         width: 1.7rem;
         fill: var(--color-primary);
+        
     }
-    &__location{
+
+    &__location {
         font-size: 1.2rem;
         display: flex;
         align-items: center;
     }
-    &__icon-location{
+
+    &__icon-location {
         margin-right: .5rem;
+
+
     }
 
-    &__rating{
+    &__rating {
         align-self: stretch;
         background-color: var(--color-primary);
         color: #fff;
         margin-left: 3rem;
         padding: 0 2.25rem;
 
-
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        
+
+        @media only screen and (max-width: $bp-small) {
+            padding: 0 1.5rem;
+        }
+        @media only screen and (max-width: $bp-smallest) {
+            margin-left: 1rem;
+            padding: 0 1;
+        }
+       
 
     }
 
-    &__rating-average{
+    &__rating-average {
         font-size: 2.5rem;
         font-weight: 300;
         margin-bottom: -3px;
 
+        @media only screen and (max-width: $bp-small) {
+            font-size: 1.8rem;
+        }
+
     }
 
-    &__rating-count{
+    &__rating-count {
         font-size: .8rem;
         text-transform: uppercase;
+
+        @media only screen and (max-width: $bp-small) {
+            font-size: .5rem;
+        }
 
     }
 }
@@ -288,7 +359,7 @@
 ////////////////////////////////////////
 // INLINE-BUTTON
 
-.btn-inline{
+.btn-inline {
     border: none;
     color: var(--color-primary);
     border-bottom: 1px solid currentColor;
@@ -299,19 +370,20 @@
     cursor: pointer;
     transition: all 0.3s;
 
-    & span{
+    & span {
         margin-left: 3px;
         transition: margin-left 0.3s;
     }
 
-    &:hover{
+    &:hover {
         color: var(--color-grey-dark-1);
+
         & span {
             margin-left: 8px;
         }
     }
 
-    &:focus{
+    &:focus {
         outline: none;
         animation: pulsate 1s infinite;
     }
@@ -327,7 +399,7 @@
 
     50% {
         transform: scale(1.05);
-        box-shadow: 0 1rem 4rem rgba(0,0,0,.25);
+        box-shadow: 0 1rem 4rem rgba(0, 0, 0, .25);
     }
 
     100% {
@@ -357,12 +429,22 @@
     display: flex;
     flex-wrap: wrap;
 
+    @media only screen and (max-width: $bp-medium) {
+        margin: 1.5rem 0;
+        padding: 1.5rem 0;
+
+    }
+
     &__item {
         flex: 0 0 50%;
         margin-bottom: .7rem;
+
+        @media only screen and (max-width: $bp-medium) {
+        flex: 0 0 100%;
+    }
     }
 
-    &__item:before{
+    &__item:before {
         content: "";
         display: inline-block;
         height: 1rem;
@@ -415,13 +497,18 @@
 ////////////////////////////////////////
 // REVIEWS
 
-.review{
+.review {
     background-color: #fff;
     box-shadow: var(--shadow-light);
     padding: 3rem;
     margin-bottom: 3.5rem;
     position: relative;
     overflow: hidden;
+
+    @media only screen and (max-width: $bp-large) {
+        padding: 2rem;
+        margin-bottom: 3rem;
+    }
 
     &__text {
         margin-bottom: 2rem;
@@ -463,7 +550,7 @@
         font-weight: 300;
     }
 
-    &::before{
+    &::before {
         content: "\201C";
         position: absolute;
         top: -2.75rem;
@@ -474,7 +561,7 @@
         font-family: sans-serif;
         color: var(--color-grey-light-2);
 
-       
+
 
     }
 
@@ -487,6 +574,10 @@
 .cta {
     padding: 3.5rem 0;
     text-align: center;
+
+    @media only screen and (max-width: $bp-large) {
+        padding: 2.5rem 0;
+    }
 
     &__book-now {
         font-size: 2rem;
@@ -511,7 +602,7 @@
     overflow: hidden;
     cursor: pointer;
 
-    & > * {
+    &>* {
         display: inline-block;
         height: 100%;
         width: 100%;
